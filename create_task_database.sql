@@ -38,6 +38,10 @@ CREATE TABLE task_db.m_category
     UNIQUE KEY          (category_name)
 );
 
+INSERT INTO task_db.m_category(category_name) VALUES("新商品A：開発プロジェクト");
+INSERT INTO task_db.m_category(category_name) VALUES("既存商品B：改良プロジェクト");
+
+
 /* ステータスマスタ作成 */
 CREATE TABLE task_db.m_status
 (
@@ -47,6 +51,10 @@ CREATE TABLE task_db.m_status
     PRIMARY KEY         (status_code),
     UNIQUE KEY          (status_name)
 );
+
+INSERT INTO task_db.m_status(status_code, status_name) VALUES('00', "未着手");
+INSERT INTO task_db.m_status(status_code, status_name) VALUES('50', "着手");
+INSERT INTO task_db.m_status(status_code, status_name) VALUES('99', "完了");
 
 /* タスクマスタ作成 */
 CREATE TABLE task_db.t_task
