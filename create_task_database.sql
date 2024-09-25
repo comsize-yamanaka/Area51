@@ -21,10 +21,12 @@ CREATE TABLE task_db.m_user
     user_id             VARCHAR(24) NOT NULL,
     password            VARCHAR(32) NOT NULL,
     user_name           VARCHAR(20) NOT NULL,
-    update_detetime     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    update_datetime     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY         (user_id),
     UNIQUE KEY          (user_name)
 );
+
+INSERT INTO task_db.m_user(user_id, password, user_name) VALUES("user", "pass", "山田太郎");
 
 /* カテゴリマスタ作成 */
 CREATE TABLE task_db.m_category
@@ -56,7 +58,7 @@ CREATE TABLE task_db.t_task
     user_id             VARCHAR(24) NOT NULL,
     status_code         CHAR(2) NOT NULL,
     memo                VARCHAR(100),
-    create_datetiime    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_datetime    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_datetime     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY(category_id) REFERENCES task_db.m_category(category_id),
     FOREIGN KEY(user_id) REFERENCES task_db.m_user(user_id),

@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>メニュー</title>
 </head>
 <body>
-
+	<h1>メニュー画面</h1>
+	<hr>
+	<%@ include file="header.jsp" %><br>
+	<input type="submit" value="タスク登録"><br>
+	<input type="submit" value="タスク一覧"><br>
+	<input type="submit" value="ログアウト"><br>
 </body>
 </html>
