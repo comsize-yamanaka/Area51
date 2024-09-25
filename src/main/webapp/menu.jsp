@@ -10,12 +10,10 @@
 	<h1>メニュー画面</h1>
 	<hr>
 	<%@ include file="header.jsp" %><br>
-	<input type="submit" value="タスク登録"><br>
-	
-	<form action="TaskListServlet" method="GET">
-	<input type="submit" value="タスク一覧"><br>
+	<form>
+		<input type="submit" formaction="TaskRegisterServlet" formmethod="get" value="タスク登録"><br>
+		<input type="submit" formaction="TaskListServlet" formmethod="get" value="タスク一覧"><br>
+		<input type="submit" formaction="LogoutServlet" formmethod="post" value="ログアウト"><br>
 	</form>
-	
-	<input type="submit" value="ログアウト"><br>
 </body>
 </html>
