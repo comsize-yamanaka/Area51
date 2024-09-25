@@ -1,6 +1,6 @@
 package model.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Yuta Yamanaka
@@ -22,7 +22,7 @@ public class UserBean {
 	/**
 	 * 更新日時
 	 */
-	private Date updateDateTime;
+	private LocalDateTime updateDateTime;
 	
 	/**
 	 * ユーザID取得
@@ -76,7 +76,7 @@ public class UserBean {
 	 * 更新日時取得
 	 * @return
 	 */
-	public Date getUpdateDateTime() {
+	public LocalDateTime getUpdateDateTime() {
 		return updateDateTime;
 	}
 	
@@ -84,7 +84,7 @@ public class UserBean {
 	 * 更新日時設定
 	 * @param updateDateTime 更新日時
 	 */
-	public void setUpdateDateTime(Date updateDateTime) {
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
 		this.updateDateTime = updateDateTime;
 	}
 }

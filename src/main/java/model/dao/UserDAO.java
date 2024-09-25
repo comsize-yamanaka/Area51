@@ -40,7 +40,7 @@ public class UserDAO {
 			ub.setUserId(res.getString("user_id"));
 			ub.setPassword(res.getString("password"));
 			ub.setUserName(res.getString("user_name"));
-			ub.setUpdateDateTime(res.getTimestamp("update_datetime"));
+			ub.setUpdateDateTime(res.getTimestamp("update_datetime").toLocalDateTime());
 		}
 
 		return ub;
