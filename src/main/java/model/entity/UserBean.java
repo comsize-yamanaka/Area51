@@ -3,6 +3,7 @@ package model.entity;
 import java.time.LocalDateTime;
 
 /**
+ * ユーザ情報
  * @author Yuta Yamanaka
  * 
  */
