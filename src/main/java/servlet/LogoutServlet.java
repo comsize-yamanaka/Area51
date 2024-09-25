@@ -35,8 +35,8 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		//ログイン画面にフォワード(ログイン成功画面等の別画面に遷移してからログイン画面にする？)
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+		//ログアウト画面にフォワード
+		RequestDispatcher rd = request.getRequestDispatcher("logout.jsp");
 		rd.forward(request, response);
 	}
 

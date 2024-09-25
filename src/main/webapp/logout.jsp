@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログアウト</title>
 </head>
 <body>
-
+	<h1>ログアウト画面</h1>
+	<hr>
+	
+	<form action="login.jsp" method="post">
+		<input type="submit" value="ログイン画面へ">
+	</form>
 </body>
 </html>
