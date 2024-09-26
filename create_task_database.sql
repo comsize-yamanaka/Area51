@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS task_db.m_user;
 DROP TABLE IF EXISTS task_db.m_category;
 DROP TABLE IF EXISTS task_db.m_status;
 DROP TABLE IF EXISTS task_db.t_task;
+DROP TABLE IF EXISTS task_db.t_comment;
 
 
 /* ユーザマスタ作成 */
@@ -66,9 +67,21 @@ CREATE TABLE task_db.t_task
     user_id             VARCHAR(24) NOT NULL,
     status_code         CHAR(2) NOT NULL,
     memo                VARCHAR(100),
-    create_datetime    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_datetime    	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_datetime     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY(category_id) REFERENCES task_db.m_category(category_id),
     FOREIGN KEY(user_id) REFERENCES task_db.m_user(user_id),
     FOREIGN KEY(status_code) REFERENCES task_db.m_status(status_code)
+);
+
+/* コメントマスタ作成 */
+CREATE TABLE task_db.t_comment
+(
+	comment_id			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	task_id				INT NOT NULL,
+	user_id				VARCHAR(24) NOT NULL,
+	comment				VARCHAR(100) NOT NULL,
+	update_datetime     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	FOREIGN KEY(task_id) REFERENCES task_db.t_task(task_id),
+    FOREIGN KEY(user_id) REFERENCES task_db.m_user(user_id)
 );
