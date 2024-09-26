@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		String taskName = (String)request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		LocalDate limitDate = LocalDate.parse(request.getParameter("limitDate"));
+		LocalDate limitDate = LocalDate.parse(request.getParameter("limitDate"), DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 		String userId = request.getParameter("userId");
 		String statusCode = request.getParameter("statusCode");
 		String memo = request.getParameter("memo");
