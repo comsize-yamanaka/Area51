@@ -7,6 +7,13 @@ import java.time.LocalDateTime;
  * 
  */
 public class TaskListBean {
+	
+	/**
+	 * タスクID
+	 */
+	private int taskId;
+	
+	
 	/**
 	 * タスク名
 	 */
@@ -37,8 +44,14 @@ public class TaskListBean {
 	 */
 	private String memo;
 
-	
-	
+	public int getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
+	}
+
 	public String getTaskName() {
 		return taskName;
 	}
@@ -86,6 +99,9 @@ public class TaskListBean {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+	
+	
 	
 	
 	
