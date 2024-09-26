@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<td>期限:</td>
-			<td><input type="date" min="<%= LocalDate.now() %>"></td>
+			<td><input type="date" min="<%= LocalDate.now() %>" name="limitDate"></td>
 		</tr>
 		<tr>
 			<td>担当者:</td>
