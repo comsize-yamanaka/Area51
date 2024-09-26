@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.entity.UserBean;
 
@@ -44,5 +47,26 @@ public class UserDAO {
 		}
 
 		return ub;
+	}
+	
+	public List<UserBean> selectAll() throws SQLException, ClassNotFoundException{
+		List<UserBean> userList = new ArrayList<>();
+		String sql = "SELECT * FROM m_user";
+		
+		try(Connection con = ConnectionManager.getConnection()) {
+			Statement stmt = con.createStatement();
+			
+			ResultSet res = stmt.executeQuery(sql);
+			while(res.next()) {
+				UserBean ub = new UserBean();
+				ub.setUserId(res.getString("user_id"));
+				ub.setPassword(res.getString("password"));
+				ub.setUserName(res.getString("user_name"));
+				ub.setUpdateDateTime(res.getTimestamp("update_datetime").toLocalDateTime());
+				userList.add(ub);
+			}
+		}
+		
+		return userList;
 	}
 }
