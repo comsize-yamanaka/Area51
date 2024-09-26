@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td>メモ:</td>
-			<td><textarea name="memo" cols="50" rows="5"></textarea></td>
+			<td><textarea name="memo" cols="20" rows="5"></textarea></td>
 		</tr>
 	</table>
 	<input type="submit" value="登録">
