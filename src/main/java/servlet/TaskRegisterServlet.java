@@ -86,6 +86,7 @@ request.setCharacterEncoding("UTF-8");
 		taskBean.setMemo(memo);
 		
 		try {
+			
 			TaskListDAO dao = new TaskListDAO();
 			
 			count = dao.taskRegister(taskBean);
