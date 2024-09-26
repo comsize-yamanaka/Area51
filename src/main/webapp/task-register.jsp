@@ -27,7 +27,7 @@
 	<table>
 		<tr>
 			<td>タスク名:</td>
-			<td><input type="text" name="taskName"></td>
+			<td><input type="text" name="taskName" required></td>
 		</tr>
 		<tr>
 			<td>カテゴリ情報:</td>
@@ -40,7 +40,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>期限:</td>
+			<td>期限:</td><!-- 期限の入力なしでも通るようにする -->
 			<td><input type="date" min="<%= LocalDate.now() %>" name="limitDate"></td>
 		</tr>
 		<tr>
