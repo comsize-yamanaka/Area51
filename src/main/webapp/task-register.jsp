@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="task-register.css" rel="stylesheet /">
 <title>タスク登録</title>
 </head>
 <body>
@@ -54,7 +55,7 @@
 		</tr>
 		<tr>
 			<td>メモ:</td>
-			<td><textarea name="memo"></textarea></td>
+			<td><textarea name="memo" cols="50" rows="5"></textarea></td>
 		</tr>
 	</table>
 	<input type="submit" value="登録">
