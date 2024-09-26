@@ -16,7 +16,7 @@
 	<h1>タスク一覧</h1>
 	<hr>
 
-	<form action="TaskDetailServlet" method="GET">
+
 	<table border="1">
 		<tr>
 			<th>タスク名</th>
@@ -37,14 +37,15 @@
 			<td><%=task.getUserName()%></td>
 			<td><%=task.getStatusName()%></td>
 			<td><%=task.getMemo()%></td>
-			<td><input type="submit" value="削除"></td>
+			<td><%=task.getTaskId()%></td>
+			<td><form action="TaskDetailServlet" method="GET"><input type ="hidden" name= "task_id" value="<%=task.getTaskId()%>"><input type="submit" value="削除"></form></td>
 		</tr>
 		<%
 		}
 		%>
 
 	</table>
-	</form>
+
 
 	<br>
 

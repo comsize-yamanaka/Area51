@@ -49,7 +49,7 @@ public class TaskDetailServlet extends HttpServlet {
 		// プルダウン用の商品カテゴリをセッションに設定
 		//session.setAttribute("categoryList", categoryList);
 		// タスク詳細画面に遷移
-		RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("task-delete-confirm.jsp");
 		rd.forward(request, response);
 	}
 }

@@ -33,7 +33,7 @@ public class TaskListDAO {
 			throws SQLException, ClassNotFoundException {
 
 		List<TaskListBean> taskList = new ArrayList<TaskListBean>();
-		String sql = "SELECT t1.task_name, t2.category_name, t1.limit_date, t3.user_name, t4.status_name, t1.memo FROM t_task t1 inner join m_category t2 on t1.category_id = t2.category_id inner join m_user t3 on t1.user_id = t3.user_id inner join m_status t4 on t1.status_code = t4.status_code;";
+		String sql = "SELECT t1.task_id,t1.task_name, t2.category_name, t1.limit_date, t3.user_name, t4.status_name, t1.memo FROM t_task t1 inner join m_category t2 on t1.category_id = t2.category_id inner join m_user t3 on t1.user_id = t3.user_id inner join m_status t4 on t1.status_code = t4.status_code;";
 
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
@@ -41,6 +41,7 @@ public class TaskListDAO {
 
 			//結果を操作??
 			while (res.next()) {
+				int taskId = res.getInt("task_id");
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
 				LocalDateTime limitDate = res.getTimestamp("limit_date").toLocalDateTime();
@@ -49,6 +50,7 @@ public class TaskListDAO {
 				String memo = res.getString("memo");//????
 
 				TaskListBean task = new TaskListBean();
+				task.setTaskId(taskId);
 				task.setTaskName(taskName);//
 				task.setCategoryName(categoryName);
 				task.setLimitDate(limitDate);
@@ -91,7 +93,7 @@ public class TaskListDAO {
 	 */
 	public TaskListBean selectTask(int taskId) throws SQLException, ClassNotFoundException {
 
-		String sql = "SELECT t1.task_name, t2.category_name, t1.limit_date, t3.user_name, t4.status_name, t1.memo FROM t_task t1 inner join m_category t2 on t1.category_id = t2.category_id inner join m_user t3 on t1.user_id = t3.user_id inner join m_status t4 on t1.status_code = t4.status_code where task_id=?;";
+		String sql = "SELECT t1.task_id,t1.task_name, t2.category_name, t1.limit_date, t3.user_name, t4.status_name, t1.memo FROM t_task t1 inner join m_category t2 on t1.category_id = t2.category_id inner join m_user t3 on t1.user_id = t3.user_id inner join m_status t4 on t1.status_code = t4.status_code where task_id=?;";
 
 		TaskListBean taskDetail = new TaskListBean();
 		try (Connection con = ConnectionManager.getConnection();
@@ -103,6 +105,7 @@ public class TaskListDAO {
 			ResultSet res = pstmt.executeQuery();
 
 			while (res.next()) {
+				taskDetail.setTaskId(res.getInt("task_id"));
 				taskDetail.setTaskName(res.getString("task_name"));
 				taskDetail.setCategoryName(res.getString("category_name"));
 				taskDetail.setLimitDate(res.getTimestamp("limit_date").toLocalDateTime());
