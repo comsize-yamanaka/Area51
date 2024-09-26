@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +68,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		String taskName = (String)request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		LocalDate limitDate = LocalDate.parse(request.getParameter("limitDate"), DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+		LocalDate limitDate = LocalDate.parse(request.getParameter("limitDate"));
 		String userId = request.getParameter("userId");
 		String statusCode = request.getParameter("statusCode");
 		String memo = request.getParameter("memo");
@@ -94,7 +93,7 @@ request.setCharacterEncoding("UTF-8");
 			
 			//登録成功ならタスク登録完了画面へ遷移
 			if(count != 0) {
-				Path = "task-register-success";
+				Path = "task-register-success.jsp";
 				
 				request.setAttribute("taskBean", taskBean);
 				
