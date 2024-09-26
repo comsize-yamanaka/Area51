@@ -69,4 +69,27 @@ public class UserDAO {
 		
 		return userList;
 	}
+	
+	public String selectUserName(String userId) throws SQLException, ClassNotFoundException{
+		String userName = "";
+		String sql = "SELECT * FROM m_user WHERE user_id = ?";
+		
+		try(Connection con = ConnectionManager.getConnection()) {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			ResultSet res = pstmt.executeQuery();
+			
+			//ユーザIDを指定して、対応したユーザ名を取得
+			if(res.equals(null)) {
+				
+			}else {
+				res.next();
+				userName = res.getString("user_name");
+			}
+		}
+		
+		return userName;
+	}
 }
