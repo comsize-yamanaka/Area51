@@ -1,13 +1,16 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entity.TaskBean;
 import model.entity.TaskListBean;
 
 /**
@@ -48,6 +51,29 @@ public class TaskListDAO {
 			}
 		}
 		return taskList;
+	}
+	
+	public int taskRegister(TaskBean taskBean) throws SQLException, ClassNotFoundException{
+		int count = 0;
+		String sql = "INSERT INTO task_db.t_task(task_name, category_id, limit_date, user_id, status_code, memo, create_datetime, update_datetime) "
+				+ "VALUES(?,?,?,?,?,?,?,?);";
+		
+		try(Connection con = ConnectionManager.getConnection()) {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, taskBean.getTaskName());
+			pstmt.setInt(2, taskBean.getCategoryId());
+			pstmt.setDate(3, java.sql.Date.valueOf(taskBean.getLimitDate()));
+			pstmt.setString(4, taskBean.getUserId());
+			pstmt.setString(5, taskBean.getStatusCode());
+			pstmt.setString(6, taskBean.getMemo());
+			pstmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+			pstmt.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
+			
+			count = pstmt.executeUpdate();
+		}
+		
+		return count;
 	}
 	
 
