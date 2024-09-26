@@ -1,7 +1,8 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList, java.util.List, java.time.LocalDate, model.entity.CategoryBean, model.entity.StatusBean" %>
+<%@page import="java.util.ArrayList, java.util.List, java.time.LocalDate" %>
+<%@page import="model.entity.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,9 @@
 		
 		@SuppressWarnings("unchecked")
 		List<StatusBean> statList = (List<StatusBean>)request.getAttribute("statusList");
+		
+		@SuppressWarnings("unchecked")
+		List<UserBean> userList = (List<UserBean>)request.getAttribute("userList");
 	%>
 	<form action="TaskRegisterServlet" method="post">
 	<table>
@@ -41,7 +45,13 @@
 		</tr>
 		<tr>
 			<td>担当者:</td>
-			<td><input type="text" name="userName"></td>
+			<td>
+				<select name="userId">
+					<% for(UserBean userBean : userList){ %>
+						<option value="<%= userBean.getUserId() %>"><%= userBean.getUserName() %></option>
+					<% } %>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>ステータス情報:</td>
