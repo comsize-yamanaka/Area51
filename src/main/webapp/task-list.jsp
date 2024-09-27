@@ -50,8 +50,23 @@
 			<td><%=task.getUserName()%></td>
 			<td><%=task.getStatusName()%></td>
 			<td><%=task.getMemo()%></td>
-			<td><%=task.getTaskId()%></td>
-			<td><form action="TaskDetailServlet" method="GET"><input type ="hidden" name= "task_id" value="<%=task.getTaskId()%>"><input type="submit" value="削除"></form></td>
+			<td>
+				<form action="TaskDetailServlet" method="GET">
+					<input type ="hidden" name= "task_id" value="<%=task.getTaskId()%>">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+			<td>
+				<form action="" method="">
+					<input type="submit" value="編集">
+				</form>
+			</td>
+			<td>
+				<form action="CommentListServlet" method="post">
+					<input type ="hidden" name= "task_id" value="<%=task.getTaskId()%>">
+					<input type="submit" value="コメント">
+				</form>
+			</td>
 		</tr>
 		<%
 		}
