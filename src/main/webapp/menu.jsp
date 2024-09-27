@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="menu.css" rel="stylesheet /">
 <title>メニュー</title>
 </head>
 <body>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="logout.css" rel="stylesheet /">
 <title>ログアウト</title>
 </head>
 <body>
