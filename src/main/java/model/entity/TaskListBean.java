@@ -100,7 +100,5 @@ public class TaskListBean {
 		this.memo = memo;
 	}
 
-	
-
-	
+		
 }

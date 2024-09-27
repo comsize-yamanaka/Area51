@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,7 @@ import model.entity.TaskListBean;
  * @author Shoko Shimada
  * m_user,m_category,m_status,t_taskにアクセスするDAO
  */
-/**
- * 
- */
+
 public class TaskListDAO {
 
 	/**
@@ -44,11 +43,12 @@ public class TaskListDAO {
 				int taskId = res.getInt("task_id");
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
-				LocalDateTime limitDate;
-				if(res.getTimestamp("limit_date")==null) {
+				
+				LocalDate limitDate;
+				if(res.getDate("limit_date").equals(null)) {
 					limitDate =null;
 				}else {
-					limitDate = res.getTimestamp("limit_date").toLocalDateTime();
+					limitDate = res.getDate("limit_date").toLocalDate();
 				}
 				
 				String userName = res.getString("user_name");
@@ -115,7 +115,12 @@ public class TaskListDAO {
 				taskDetail.setTaskId(res.getInt("task_id"));
 				taskDetail.setTaskName(res.getString("task_name"));
 				taskDetail.setCategoryName(res.getString("category_name"));
-				taskDetail.setLimitDate(res.getTimestamp("limit_date").toLocalDateTime());
+				taskDetail.setLimitDate(res.getDate("limit_date").toLocalDate());
+				
+				taskDetail.setUserName(res.getString("user_name"));
+				
+				
+				
 				taskDetail.setUserName(res.getString("user_name"));
 				taskDetail.setStatusName(res.getString("status_name"));
 				taskDetail.setMemo(res.getString("memo"));

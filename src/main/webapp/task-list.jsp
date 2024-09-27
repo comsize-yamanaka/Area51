@@ -38,7 +38,7 @@
 			<td><%=task.getCategoryName()%></td>
 			
 			
-			<%	if(task.getLimitDate()== null ){ %>
+			<%	if(task.getLimitDate().equals(null) ){ %>
 			<td><pre>   </pre></td>
 			<%
 				}else{
