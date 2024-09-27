@@ -126,22 +126,44 @@ public class TaskListDAO {
 	 */
 	public int taskRegister(TaskBean taskBean) throws SQLException, ClassNotFoundException {
 		int count = 0;
-		String sql = "INSERT INTO task_db.t_task(task_name, category_id, limit_date, user_id, status_code, memo, create_datetime, update_datetime) "
-				+ "VALUES(?,?,?,?,?,?,?,?);";
+		String sql = "";
+		
+		if(taskBean.getLimitDate() != null) {
+			sql = "INSERT INTO task_db.t_task(task_name, category_id, limit_date, user_id, status_code, memo, create_datetime, update_datetime) "
+					+ "VALUES(?,?,?,?,?,?,?,?);";
+			
+			try (Connection con = ConnectionManager.getConnection()) {
+				PreparedStatement pstmt = con.prepareStatement(sql);
 
-		try (Connection con = ConnectionManager.getConnection()) {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, taskBean.getTaskName());
+				pstmt.setInt(2, taskBean.getCategoryId());
+				pstmt.setDate(3, java.sql.Date.valueOf(taskBean.getLimitDate()));
+				pstmt.setString(4, taskBean.getUserId());
+				pstmt.setString(5, taskBean.getStatusCode());
+				pstmt.setString(6, taskBean.getMemo());
+				pstmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+				pstmt.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 
-			pstmt.setString(1, taskBean.getTaskName());
-			pstmt.setInt(2, taskBean.getCategoryId());
-			pstmt.setDate(3, java.sql.Date.valueOf(taskBean.getLimitDate()));
-			pstmt.setString(4, taskBean.getUserId());
-			pstmt.setString(5, taskBean.getStatusCode());
-			pstmt.setString(6, taskBean.getMemo());
-			pstmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
-			pstmt.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
+				count = pstmt.executeUpdate();
+			}
+			
+		}else {
+			sql = "INSERT INTO task_db.t_task(task_name, category_id, user_id, status_code, memo, create_datetime, update_datetime) "
+					+ "VALUES(?,?,?,?,?,?,?);";
+			
+			try (Connection con = ConnectionManager.getConnection()) {
+				PreparedStatement pstmt = con.prepareStatement(sql);
 
-			count = pstmt.executeUpdate();
+				pstmt.setString(1, taskBean.getTaskName());
+				pstmt.setInt(2, taskBean.getCategoryId());
+				pstmt.setString(3, taskBean.getUserId());
+				pstmt.setString(4, taskBean.getStatusCode());
+				pstmt.setString(5, taskBean.getMemo());
+				pstmt.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+				pstmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+
+				count = pstmt.executeUpdate();
+			}
 		}
 
 		return count;
