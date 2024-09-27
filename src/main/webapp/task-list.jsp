@@ -27,13 +27,26 @@
 			<th>メモ</th>
 		</tr>
 
+		
 		<%
+		
 		for (TaskListBean task : taskList) {
+			
 		%>
 		<tr>
 			<td><%=task.getTaskName()%></td>
 			<td><%=task.getCategoryName()%></td>
+			
+			
+			<%	if(task.getLimitDate()== null ){ %>
+			<td><pre>   </pre></td>
+			<%
+				}else{
+			%>
 			<td><%=task.getLimitDate()%></td>
+			<%} %>
+			
+			
 			<td><%=task.getUserName()%></td>
 			<td><%=task.getStatusName()%></td>
 			<td><%=task.getMemo()%></td>
@@ -56,9 +69,6 @@
 			<input type="submit" value="メニュー　本当はタスク編集画面">
 		</form>
 		
-		<form action="task-delete.jsp" method="POST">
-			<input type="submit" value="タスク削除画面">
-		</form>
 	</div>
 
 

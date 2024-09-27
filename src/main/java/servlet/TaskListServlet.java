@@ -38,11 +38,11 @@ public class TaskListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// sessionに格納?
+		// sessionに格納
 		HttpSession session = request.getSession();
 		session.setAttribute("taskList", taskList);
 
-		//リクエスト送信?
+		//リクエスト送信
 		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 		rd.forward(request, response);
 		

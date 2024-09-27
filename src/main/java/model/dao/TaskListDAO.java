@@ -44,7 +44,13 @@ public class TaskListDAO {
 				int taskId = res.getInt("task_id");
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
-				LocalDateTime limitDate = res.getTimestamp("limit_date").toLocalDateTime();
+				LocalDateTime limitDate;
+				if(res.getTimestamp("limit_date")==null) {
+					limitDate =null;
+				}else {
+					limitDate = res.getTimestamp("limit_date").toLocalDateTime();
+				}
+				
 				String userName = res.getString("user_name");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");//????
