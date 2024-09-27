@@ -65,13 +65,14 @@ public class TaskListDAO {
 	}
 
 	/**
-	 * 指定されたタスクを処理します
+	 * 指定されたタスクを削除処理します
+	 * @author Shoko Shimada
 	 * @param taskId
 	 * @return 処理件数
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public int deleteItem(int taskId) throws SQLException, ClassNotFoundException {
+	public int deleteTask(int taskId) throws SQLException, ClassNotFoundException {
 
 		String sql = "DELETE FROM t_task WHERE task_id = ?;";
 		int processingNumber = 0; //処理件数
