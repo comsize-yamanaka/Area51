@@ -46,8 +46,7 @@ public class TaskDetailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		// タスクの詳細情報をセッションに設定
 		session.setAttribute("taskDetail", taskDetail);
-		// プルダウン用の商品カテゴリをセッションに設定
-		//session.setAttribute("categoryList", categoryList);
+		session.setAttribute("taskId", taskId);
 		// タスク詳細画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-confirm.jsp");
 		rd.forward(request, response);

@@ -28,9 +28,10 @@ public class TaskDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		TaskListDAO dao = new TaskListDAO();
 		int processingNumber = 0; //処理件数
+		
 		try {
 			// 削除処理
-			processingNumber = dao.deleteItem(Integer.parseInt(request.getParameter("task_id")));
+			processingNumber = dao.deleteTask(Integer.parseInt(request.getParameter("taskId")));
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

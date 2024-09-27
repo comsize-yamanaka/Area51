@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>タスク削除確認画面</title>
+<title>削除タスク確認画面</title>
 </head>
 <body>
 
 	<%
 		TaskListBean taskDetail = (TaskListBean) session.getAttribute("taskDetail");
 	%>
-	<h1>商品詳細画面</h1>
+	<h1>削除タスク確認画面</h1>
 	<hr>
 	
 	以下のタスクを削除しますか？
@@ -47,9 +47,11 @@
 	<tr>
 	
 	<td>
-	<form action="TaskDeleteServlet" method="POST">
-		<input type="submit" value="削除する">
-	</form>
+
+		
+		<form action="TaskDeleteServlet" method="POST"><input type ="hidden" name= "taskId" value="<%=taskDetail.getTaskId()%>"><input type="submit" value="削除"></form></td>
+		
+	
 	</td>
 	
 	<td>
