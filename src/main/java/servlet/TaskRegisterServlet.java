@@ -68,7 +68,13 @@ request.setCharacterEncoding("UTF-8");
 		
 		String taskName = (String)request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		LocalDate limitDate = LocalDate.parse(request.getParameter("limitDate"));
+		
+		LocalDate limitDate = null;
+		System.out.println(request.getParameter("limitDate"));
+		if(!request.getParameter("limitDate").equals("")) {
+			limitDate = LocalDate.parse(request.getParameter("limitDate"));
+		}
+		
 		String userId = request.getParameter("userId");
 		String statusCode = request.getParameter("statusCode");
 		String memo = request.getParameter("memo");
