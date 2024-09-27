@@ -1,6 +1,6 @@
 package model.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author Shoko Shimada
@@ -27,7 +27,7 @@ public class TaskListBean {
 	/**
 	 * 期限
 	 */
-	private LocalDateTime limitDate;
+	private LocalDate limitDate;
 	
 	/**
 	 * 担当者情報
@@ -68,11 +68,11 @@ public class TaskListBean {
 		this.categoryName = categoryName;
 	}
 
-	public LocalDateTime getLimitDate() {
+	public LocalDate getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(LocalDateTime limitDate) {
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
 
@@ -101,10 +101,6 @@ public class TaskListBean {
 	}
 
 	
-	
-	
-	
-	
-	
+
 	
 }
