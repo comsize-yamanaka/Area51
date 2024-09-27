@@ -45,7 +45,7 @@ public class TaskListDAO {
 				String categoryName = res.getString("category_name");
 				
 				LocalDate limitDate;
-				if(res.getDate("limit_date").equals(null)) {
+				if(res.getDate("limit_date") == null) {
 					limitDate =null;
 				}else {
 					limitDate = res.getDate("limit_date").toLocalDate();
