@@ -52,7 +52,6 @@
 		<form action="TaskDeleteServlet" method="POST"><input type ="hidden" name= "taskId" value="<%=taskDetail.getTaskId()%>"><input type="submit" value="削除"></form></td>
 		
 	
-	</td>
 	
 	<td>
 	<form action="TaskListServlet" method="GET">

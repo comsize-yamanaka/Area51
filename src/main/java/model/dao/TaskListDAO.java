@@ -43,14 +43,14 @@ public class TaskListDAO {
 				int taskId = res.getInt("task_id");
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
-				
+
 				LocalDate limitDate;
-				if(res.getDate("limit_date") == null) {
-					limitDate =null;
-				}else {
+				if (res.getDate("limit_date") == null) {
+					limitDate = null;
+				} else {
 					limitDate = res.getDate("limit_date").toLocalDate();
 				}
-				
+
 				String userName = res.getString("user_name");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");//????
@@ -111,24 +111,32 @@ public class TaskListDAO {
 			// SQLステートメントの実行
 			ResultSet res = pstmt.executeQuery();
 
+			//結果を操作??
 			while (res.next()) {
-				taskDetail.setTaskId(res.getInt("task_id"));
-				taskDetail.setTaskName(res.getString("task_name"));
-				taskDetail.setCategoryName(res.getString("category_name"));
-				taskDetail.setLimitDate(res.getDate("limit_date").toLocalDate());
+				String taskName = res.getString("task_name");
+				String categoryName = res.getString("category_name");
+				LocalDate limitDate;
+				if (res.getDate("limit_date") == null) {
+					limitDate = null;
+				} else {
+					limitDate = res.getDate("limit_date").toLocalDate();
+				}
+				String userName = res.getString("user_name");
+				String statusName = res.getString("status_name");
+				String memo = res.getString("memo");
 				
-				taskDetail.setUserName(res.getString("user_name"));
-				
-				
-				
-				taskDetail.setUserName(res.getString("user_name"));
-				taskDetail.setStatusName(res.getString("status_name"));
-				taskDetail.setMemo(res.getString("memo"));
+				taskDetail.setTaskName(taskName);
+				taskDetail.setCategoryName(categoryName);
+				taskDetail.setLimitDate(limitDate);
+				taskDetail.setUserName(userName);
+				taskDetail.setStatusName(statusName);
+				taskDetail.setMemo(memo);
 			}
+			
 		}
 		return taskDetail;
 	}
-	
+
 	/**
 	 * タスク登録処理
 	 * @param taskBean
@@ -139,11 +147,11 @@ public class TaskListDAO {
 	public int taskRegister(TaskBean taskBean) throws SQLException, ClassNotFoundException {
 		int count = 0;
 		String sql = "";
-		
-		if(taskBean.getLimitDate() != null) {
+
+		if (taskBean.getLimitDate() != null) {
 			sql = "INSERT INTO task_db.t_task(task_name, category_id, limit_date, user_id, status_code, memo, create_datetime, update_datetime) "
 					+ "VALUES(?,?,?,?,?,?,?,?);";
-			
+
 			try (Connection con = ConnectionManager.getConnection()) {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -158,11 +166,11 @@ public class TaskListDAO {
 
 				count = pstmt.executeUpdate();
 			}
-			
-		}else {
+
+		} else {
 			sql = "INSERT INTO task_db.t_task(task_name, category_id, user_id, status_code, memo, create_datetime, update_datetime) "
 					+ "VALUES(?,?,?,?,?,?,?);";
-			
+
 			try (Connection con = ConnectionManager.getConnection()) {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -180,4 +188,65 @@ public class TaskListDAO {
 
 		return count;
 	}
+
+	/**
+	 * タスク編集処理
+	 * @param taskBean
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public int updateTask(TaskBean taskBean2, int taskId) throws SQLException, ClassNotFoundException {
+		int count = 0;
+		String sql = "";
+		
+			sql = "update t_task set "
+					+ "task_name =?,category_id=?,limit_date=?,user_id=?,status_code=?,memo=?,create_datetime=?, update_datetime=? where task_id=?;";
+
+			try (Connection con = ConnectionManager.getConnection()) {
+				PreparedStatement pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(1, taskBean2.getTaskName());
+				pstmt.setInt(2, taskBean2.getCategoryId());
+				
+				//nullかチェック
+				if (taskBean2.getLimitDate() != null) {
+					pstmt.setDate(3, java.sql.Date.valueOf(taskBean2.getLimitDate()));
+				}else {
+					pstmt.setDate(3, null);
+				}
+				
+				pstmt.setString(4, taskBean2.getUserId());
+				pstmt.setString(5, taskBean2.getStatusCode());
+				pstmt.setString(6, taskBean2.getMemo());
+				pstmt.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+				pstmt.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
+				pstmt.setInt(9, taskId);
+
+				count = pstmt.executeUpdate();
+			}
+
+		
+		return count;
+	}
+
+	//	public int updateTask(TaskListBean itemResult,int taskId)
+	//			throws SQLException, ClassNotFoundException {
+	//		int processingNumber = 0; //処理件数
+	//
+	//		String sql = "UPDATE m_item SET item_name = ?, category_code = ?, price = ? WHERE item_code = ?";
+	//
+	//		try (Connection con = ConnectionManager.getConnection();
+	//				PreparedStatement pstmt = con.prepareStatement(sql);) {
+	//			// プレースホルダへの値の設定
+	//			pstmt.setString(1, itemResult.getItemName());
+	//			pstmt.setInt(2, itemResult.getCategoryCode());
+	//			pstmt.setInt(3, itemResult.getPrice());
+	//			pstmt.setInt(4, itemResult.getItemCode());
+	//			processingNumber = pstmt.executeUpdate();
+	//		}
+	//		return processingNumber;
+	//	}
+	//	
+
 }

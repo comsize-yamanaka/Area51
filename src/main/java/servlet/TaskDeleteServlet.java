@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskListDAO;
 
@@ -28,10 +29,14 @@ public class TaskDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		TaskListDAO dao = new TaskListDAO();
 		int processingNumber = 0; //処理件数
-		
+		// セッションオブジェクトの取得
+		HttpSession session = request.getSession();
+		// TaskDetail2Servletで設定したタスクIDをセッションから取得
+		int taskId = (int) session.getAttribute("taskId");
+
 		try {
 			// 削除処理
-			processingNumber = dao.deleteTask(Integer.parseInt(request.getParameter("taskId")));
+			processingNumber = dao.deleteTask(taskId);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
