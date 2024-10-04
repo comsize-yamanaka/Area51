@@ -66,7 +66,11 @@ request.setCharacterEncoding("UTF-8");
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String taskName = (String)request.getParameter("taskName");
+		String taskName = null;
+		if(!request.getParameter("taskName").equals("")) {
+			taskName = (String)request.getParameter("taskName");
+		}
+		
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		
 		LocalDate limitDate = null;
