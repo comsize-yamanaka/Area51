@@ -10,7 +10,7 @@
 	<%
 		TaskListBean taskDetail = (TaskListBean) session.getAttribute("taskDetail");
 	%>
-	<h1>商品詳細画面</h1>
+	<h1>タスク詳細画面</h1>
 	<hr>
 	<table border="1">
 		<tr>

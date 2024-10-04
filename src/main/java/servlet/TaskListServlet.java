@@ -27,6 +27,7 @@ public class TaskListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		
 		List<TaskListBean> taskList = null;
 		// DAO????
 		TaskListDAO dao = new TaskListDAO();

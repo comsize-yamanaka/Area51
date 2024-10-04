@@ -57,7 +57,8 @@
 				</form>
 			</td>
 			<td>
-				<form action="" method="">
+				<form action="TaskDetail2Servlet" method="GET">
+					<input type ="hidden" name= "task_id" value="<%=task.getTaskId()%>">
 					<input type="submit" value="編集">
 				</form>
 			</td>
@@ -78,10 +79,9 @@
 	<br>
 
 
-	<!--仮にメニュー画面に飛ぶようにしてあります -->
 	<div>
 		<form action="menu.jsp" method="POST">
-			<input type="submit" value="メニュー　本当はタスク編集画面">
+			<input type="submit" value="メニュー">
 		</form>
 		
 	</div>
